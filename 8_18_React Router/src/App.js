@@ -1,8 +1,19 @@
 import './App.css';
-import { HashRouter, NavLink, Routes, Route } from 'react-router-dom';
+import {
+  HashRouter,
+  NavLink,
+  Routes,
+  Route,
+  useNavigate,
+} from 'react-router-dom';
 
 const Todo = () => {
-  return <p>這是 Todo 頁面</p>;
+  return (
+    <>
+      <p>這是 Todo 頁面</p>
+      <Logout />
+    </>
+  );
 };
 const Login = () => {
   return <p>這是登入頁面</p>;
@@ -12,6 +23,19 @@ const Register = () => {
 };
 const About = () => {
   return <p>這是關於我們頁面</p>;
+};
+const Logout = () => {
+  const navigate = useNavigate();
+  return (
+    <>
+      <button style={{ padding: '1rem' }} onClick={() => navigate('/login')}>
+        Logout
+      </button>
+      <button style={{ padding: '1rem' }} onClick={() => navigate(-1)}>
+        回到上個頁面
+      </button>
+    </>
+  );
 };
 
 function App() {
@@ -41,11 +65,11 @@ function App() {
           <Route path="register" element={<Register />} />
           <Route path="login" element={<Login />} />
           <Route path="todo" element={<Todo />} />
-          <Route path="/about" element={<About />} />
+          <Route path="about" element={<About />} />
           <Route
             path="*"
             element={
-              <main style={{ padding: "1rem" }}>
+              <main style={{ padding: '1rem' }}>
                 <p>不存在的路由！</p>
               </main>
             }
